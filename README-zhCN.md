@@ -1,7 +1,7 @@
-# 0xG1iTch
+# 0xg1itch
 
 <p align="center">
-  <img src="public/og.webp" alt="0xG1iTch" width="100%">
+  <img src="public/og.webp" alt="0xg1itch" width="100%">
 </p>
 
 ![Astro](https://img.shields.io/badge/Astro-6.3-FF5D01?style=for-the-badge&logo=astro&logoColor=white)

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Inject YAML config values into 0xG1iTch source files."""
+"""Inject YAML config values into 0xg1itch source files."""
 
 import re, yaml, os, shutil
 
-ROOT = "/home/xi/WORKSPACE/0xG1iTch"
-BACKUP = "/tmp/0xG1iTch-bak"
+ROOT = "/home/xi/WORKSPACE/0xg1itch"
+BACKUP = "/tmp/0xg1itch-bak"
 
 with open(f"{ROOT}/src/site.yml") as f:
     cfg = yaml.safe_load(f)

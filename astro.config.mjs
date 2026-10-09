@@ -29,7 +29,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 const isCI = true;
 
 export default defineConfig({
-    site: "https://0xG1iTch.github.io",
+    site: "https://0xg1itch.github.io",
     base: "/",
     trailingSlash: "always",
     prefetch: true,

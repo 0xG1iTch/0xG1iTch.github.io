@@ -9,7 +9,7 @@ import Layout from "../layouts/Layout.astro";
 import { profileConfig, siteConfig } from "../config";
 import "../styles/cepato.css";
 
-const about0xG1iTch = await getEntry("spec", "about-0xG1iTch");
+const about0xg1itch = await getEntry("spec", "about-0xg1itch");
 
 interface Section {
 	title: string;
@@ -17,9 +17,9 @@ interface Section {
 }
 
 const sections: Section[] = [];
-if (about0xG1iTch) {
-	const { Content } = await render(about0xG1iTch);
-	sections.push({ title: about0xG1iTch.data.title, Content });
+if (about0xg1itch) {
+	const { Content } = await render(about0xg1itch);
+	sections.push({ title: about0xg1itch.data.title, Content });
 }
 
 const aboutLabel = i18n(I18nKey.about);

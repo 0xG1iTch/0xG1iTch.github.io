@@ -1,4 +1,4 @@
-// 0xG1iTch site config — loaded from src/site.yml
+// 0xg1itch site config — loaded from src/site.yml
 // Components should import from here instead of hardcoded values.
 import type siteYaml from "./site.yml";
 

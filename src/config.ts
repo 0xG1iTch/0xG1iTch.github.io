@@ -1,4 +1,4 @@
-// 0xG1iTch — site config loaded from YAML
+// 0xg1itch — site config loaded from YAML
 // Edit src/site.yml to customize your site.
 import type {
 	ExpressiveCodeConfig,

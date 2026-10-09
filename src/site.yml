@@ -1,5 +1,5 @@
 site:
-  title: "0xG1iTch | Mohamed El Hammouchi"
+  title: "0xg1itch | Mohamed El Hammouchi"
   subtitle: "A place to share your thoughts"
   url: "https://0xg1itch.github.io"
   author: "Mohamed El Hammouchi"
@@ -15,9 +15,9 @@ profile:
   bio: "Ad Astra Per Aspera"
   links:
     - name: "GitHub"
-      url: "https://github.com/ChongxiSama/0xG1iTch"
+      url: "https://github.com/ChongxiSama/0xg1itch"
     - name: "Docs"
-      url: "https://github.com/ChongxiSama/0xG1iTch#readme"
+      url: "https://github.com/ChongxiSama/0xg1itch#readme"
     - name: "主题目录"
       url: "https://astro.build/themes/"
 
@@ -43,7 +43,7 @@ features:
 seo:
   enable_json_ld: false
   breadcrumb: true
-  keywords: "astro, theme, blog, 0xG1iTch"
+  keywords: "astro, theme, blog, 0xg1itch"
   same_as: []
 
 services:
@@ -58,10 +58,10 @@ services:
     url: ""
 
 trusted_domains:
-  - "0xG1iTch.vercel.app"
+  - "0xg1itch.vercel.app"
 
 copyright:
-  text: "0xG1iTch Demo"
-  site_name: "0xG1iTch"
+  text: "0xg1itch Demo"
+  site_name: "0xg1itch"
   license: "MIT"
   license_url: "https://opensource.org/licenses/MIT"
