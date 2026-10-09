@@ -1,4 +1,3 @@
-import { RpStamp } from "./RpStamp";
 import { StripeFooter } from "./StripeFooter";
 
 interface PaginationProps {
@@ -65,7 +64,6 @@ export const Pagination = ({
 
 			<div className="relative z-10 mt-10 pt-8 border-t border-lt-ink flex justify-between items-end">
 				<div className="flex items-center gap-4">
-					<RpStamp />
 					<div className="font-mono text-[11px] text-lt-ghost leading-none uppercase tracking-tighter">
 						{brandLabel}
 						<br />

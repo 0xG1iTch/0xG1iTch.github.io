@@ -6,7 +6,6 @@ import { i18n } from "../../i18n/translation";
 import { siteConfig } from "../../config";
 import Layout from "../../layouts/Layout.astro";
 import "../../styles/cepato.css";
-import { RpStamp } from "@components/ui/RpStamp";
 import { StripeFooter } from "@components/ui/StripeFooter";
 
 const allSeries = (await getCollection("seri")).sort(
@@ -73,9 +72,6 @@ const metaDescription = `${siteConfig.title} series collection`;
 
             <div class="relative z-10 mt-12 pt-8 border-t border-lt-ink flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
 				<div class="flex items-center gap-4">
-					<div class="scale-90 origin-left">
-						<RpStamp />
-					</div>
 					<div class="text-[10px] font-mono text-lt-ghost leading-none uppercase tracking-tighter text-center md:text-left">
 						Rhine Lab Series Central
 						<br />
