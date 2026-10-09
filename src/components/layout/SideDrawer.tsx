@@ -167,14 +167,6 @@ export const SideDrawer = ({
 						<div className="scale-90">
 							<RpStamp />
 						</div>
-						<div className="flex flex-col">
-							<span className="text-[9px] font-mono text-lt-ghost uppercase tracking-tighter">
-								Rhine_Lab_Pioneer
-							</span>
-							<span className="text-[8px] font-mono text-white/20 uppercase tracking-widest">
-								Protocol_V.4.21
-							</span>
-						</div>
 					</div>
 					<div className="h-[2px] w-full flex">
 						<div className="bg-rl-teal w-1/3" />
