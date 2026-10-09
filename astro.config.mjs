@@ -29,7 +29,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 const isCI = true;
 
 export default defineConfig({
-    site: "https://lonetrail.vercel.app",
+    site: "https://0xG1iTch.github.io",
     base: "/",
     trailingSlash: "always",
     prefetch: true,
