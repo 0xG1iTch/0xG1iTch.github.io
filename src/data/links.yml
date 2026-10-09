@@ -1,7 +1,7 @@
 - title: "Demo Links"
   links:
     - name: "Astro"
-      description: "The framework powering Lonetrail"
+      description: "The framework powering 0xG1iTch"
       link: "https://astro.build"
       avatar: "https://astro.build/favicon.svg"
     - name: "Tailwind CSS"
@@ -10,7 +10,7 @@
       avatar: "https://tailwindcss.com/favicons/favicon.ico"
 - title: "Open Source"
   links:
-    - name: "Lonetrail"
+    - name: "0xG1iTch"
       description: "Theme source code"
-      link: "https://github.com/ChongxiSama/Lonetrail"
+      link: "https://github.com/ChongxiSama/0xG1iTch"
       avatar: "https://github.com/fluidicon.png"

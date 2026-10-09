@@ -15,9 +15,9 @@ profile:
   bio: "Ad Astra Per Aspera"
   links:
     - name: "GitHub"
-      url: "https://github.com/ChongxiSama/Lonetrail"
+      url: "https://github.com/ChongxiSama/0xG1iTch"
     - name: "Docs"
-      url: "https://github.com/ChongxiSama/Lonetrail#readme"
+      url: "https://github.com/ChongxiSama/0xG1iTch#readme"
     - name: "主题目录"
       url: "https://astro.build/themes/"
 
@@ -43,7 +43,7 @@ features:
 seo:
   enable_json_ld: false
   breadcrumb: true
-  keywords: "astro, theme, blog, lonetrail"
+  keywords: "astro, theme, blog, 0xG1iTch"
   same_as: []
 
 services:
@@ -58,10 +58,10 @@ services:
     url: ""
 
 trusted_domains:
-  - "lonetrail.vercel.app"
+  - "0xG1iTch.vercel.app"
 
 copyright:
-  text: "Lonetrail Demo"
-  site_name: "Lonetrail"
+  text: "0xG1iTch Demo"
+  site_name: "0xG1iTch"
   license: "MIT"
   license_url: "https://opensource.org/licenses/MIT"

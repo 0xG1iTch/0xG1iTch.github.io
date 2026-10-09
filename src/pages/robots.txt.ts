@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = (context) => {
-	const siteUrl = context.site?.toString() || "https://lonetrail.vercel.app";
+	const siteUrl = context.site?.toString() || "https://0xG1iTch.vercel.app";
 	const robotsTxt = `
 User-agent: *
 Disallow: /favicon/

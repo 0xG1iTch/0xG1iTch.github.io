@@ -1,7 +1,7 @@
-# Lonetrail
+# 0xG1iTch
 
 <p align="center">
-  <img src="public/og.webp" alt="Lonetrail" width="100%">
+  <img src="public/og.webp" alt="0xG1iTch" width="100%">
 </p>
 
 ![Astro](https://img.shields.io/badge/Astro-6.3-FF5D01?style=for-the-badge&logo=astro&logoColor=white)
@@ -16,7 +16,7 @@ A minimal Astro blog template. Clean, fast, fully configurable via YAML.
 
 ## Demo
 
-👉[Live Demo Here!](https://lonetrail.vercel.app/)
+👉[Live Demo Here!](https://0xG1iTch.vercel.app/)
 
 
 ## Features

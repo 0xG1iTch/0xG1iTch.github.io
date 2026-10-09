@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Inject YAML config values into Lonetrail source files."""
+"""Inject YAML config values into 0xG1iTch source files."""
 
 import re, yaml, os, shutil
 
-ROOT = "/home/xi/WORKSPACE/Lonetrail"
-BACKUP = "/tmp/lonetrail-bak"
+ROOT = "/home/xi/WORKSPACE/0xG1iTch"
+BACKUP = "/tmp/0xG1iTch-bak"
 
 with open(f"{ROOT}/src/site.yml") as f:
     cfg = yaml.safe_load(f)

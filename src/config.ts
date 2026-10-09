@@ -1,4 +1,4 @@
-// Lonetrail — site config loaded from YAML
+// 0xG1iTch — site config loaded from YAML
 // Edit src/site.yml to customize your site.
 import type {
 	ExpressiveCodeConfig,
