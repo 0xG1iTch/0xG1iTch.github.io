@@ -43,7 +43,7 @@ replacements = {
     # SideDrawer.tsx
     f"{ROOT}/src/components/layout/SideDrawer.tsx": [
         ('"Chongxiの咖啡屋"', f'"{cfg["copyright"]["site_name"]}"'),
-        ('"/images/chongxi-avatar.webp"', f'"{cfg["profile"]["avatar"]}"'),
+        ('"/images/0xG1iTch.png"', f'"{cfg["profile"]["avatar"]}"'),
         ('"Chongxi"', f'"{cfg["copyright"]["text"]}"'),
         ('"循此苦旅，直抵群星。"', f'"{cfg["profile"]["bio"]}"'),
     ],
@@ -55,14 +55,14 @@ replacements = {
     # PostHero.astro
     f"{ROOT}/src/components/post/PostHero.astro": [
         ('"/images/chongxi-about-bg.webp"', cfg["site"]["banner"] or '""'),
-        ('"/images/chongxi-avatar.webp"', cfg["profile"]["avatar"] or '""'),
+        ('"/images/0xG1iTch.png"', cfg["profile"]["avatar"] or '""'),
         ('"Chongxi"', cfg["copyright"]["text"]),
         ('href="https://chongxi.us"', f'href="{cfg["site"]["url"]}"'),
         ('title="Jump to chongxi.us"', f'title="Jump to {cfg["site"]["url"]}"'),
     ],
     # PocketCard.tsx
     f"{ROOT}/src/components/pages/PocketCard.tsx": [
-        ('"/images/chongxi-avatar.webp"', cfg["profile"]["avatar"] or '""'),
+        ('"/images/0xG1iTch.png"', cfg["profile"]["avatar"] or '""'),
         ('href="https://chongxi.us"', f'href="{cfg["site"]["url"]}"'),
         ('title="Jump to chongxi.us"', f'title="Jump to {cfg["site"]["url"]}"'),
     ],

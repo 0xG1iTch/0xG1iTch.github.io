@@ -7,7 +7,7 @@ export const LinkManifest = () => {
 	const siteInfo = {
 		name: siteConfig.title,
 		url: siteConfig.url + "/",
-		avatar: profileConfig.avatar || `${siteConfig.url}/images/favicon.webp`,
+		avatar: profileConfig.avatar || `${siteConfig.url}/images/0xG1iTch.png`,
 		description: profileConfig.bio || siteConfig.subtitle,
 	};
 

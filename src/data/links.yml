@@ -1,16 +1,6 @@
-- title: "Demo Links"
-  links:
-    - name: "Astro"
-      description: "The framework powering 0xg1itch"
-      link: "https://astro.build"
-      avatar: "https://astro.build/favicon.svg"
-    - name: "Tailwind CSS"
-      description: "Utility-first CSS framework"
-      link: "https://tailwindcss.com"
-      avatar: "https://tailwindcss.com/favicons/favicon.ico"
-- title: "Open Source"
+- title: "Links"
   links:
     - name: "0xg1itch"
-      description: "Theme source code"
+      description: "github profile"
       link: "https://github.com/ChongxiSama/0xg1itch"
       avatar: "https://github.com/fluidicon.png"
