@@ -1,7 +1,6 @@
 import { useStore } from "@nanostores/react";
 import { $isNavMenuOpen, setIsNavMenuOpen } from "../../store/app";
 import Button from "../ui/Button";
-import { RpStamp } from "../ui/RpStamp";
 import I18nKey from "../../i18n/i18nKey";
 import { i18n } from "../../i18n/translation";
 
@@ -163,11 +162,6 @@ export const SideDrawer = ({
 				</nav>
 
 				<div className="p-8 border-t border-white/5">
-					<div className="flex items-center gap-4 mb-6">
-						<div className="scale-90">
-							<RpStamp />
-						</div>
-					</div>
 					<div className="h-[2px] w-full flex">
 						<div className="bg-rl-teal w-1/3" />
 						<div className="bg-rl-gold w-1/3" />
