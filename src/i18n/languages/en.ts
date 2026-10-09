@@ -33,7 +33,6 @@ export const en: Translation = {
 	[Key.copyDate]: "Date",
 	[Key.copyLicense]: "License",
 	[Key.copied]: "Copied",
-	[Key.follow]: "Follow",
 	[Key.poweredBy]: "Powered by",
 	[Key.subscribe]: "Subscribe",
 	[Key.seriesLabel]: "Series Entry",

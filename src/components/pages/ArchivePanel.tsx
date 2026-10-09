@@ -213,14 +213,6 @@ export default function ArchivePanel({ sortedPosts }: Props) {
 			</div>
 
 			<div className="relative z-10 mt-20 pt-8 border-t border-lt-ink flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
-				<div className="flex items-center gap-4">
-					<div className="text-[10px] font-mono text-lt-ghost leading-none uppercase tracking-tighter text-center md:text-left">
-						Rhine Lab Pioneer Division
-						<br />
-						Index_Complete
-						{(new Date().getMonth() + 1).toString().padStart(2, "0")}
-					</div>
-				</div>
 				<span className="text-[10px] font-mono text-lt-ghost uppercase tracking-widest italic" />
 			</div>
 

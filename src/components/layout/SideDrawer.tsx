@@ -95,36 +95,12 @@ export const SideDrawer = ({
 							<h2 className="font-display text-xl tracking-tight uppercase leading-none mb-1 text-white">
 								{authorName || siteTitle}
 							</h2>
-							<span className="block font-mono text-[9px] text-lt-ghost tracking-[0.2em] uppercase">
-								Auth_Lv
-							</span>
-							<a
-								href="/subscribe/"
-								className="mt-2 flex items-center gap-1.5 px-2 py-1 border border-white/10 text-lt-ghost hover:text-lt-accent hover:border-lt-accent/50 transition-all text-[9px] font-mono uppercase tracking-widest"
-								title="Follow via RSS"
-							>
-								<svg
-									className="w-3 h-3"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-								>
-									<path d="M4 11a9 9 0 0 1 9 9" />
-									<path d="M4 4a16 16 0 0 1 16 16" />
-									<circle cx="5" cy="19" r="1" />
-								</svg>
-								Follow
-							</a>
 						</div>
 					</div>
 					<div className="px-4 mt-4">
 						<p className="font-cn text-[12px] text-lt-ghost leading-relaxed">
-							{authorBio || "Ad Astra Per Aspera"}
+							{authorBio || " "}
 							<br />
-							<span className="font-mono text-[9px] opacity-40 uppercase">
-								Subject_id: PTL-9348
-							</span>
 						</p>
 					</div>
 				</div>

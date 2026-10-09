@@ -33,7 +33,6 @@ export const zh_CN: Translation = {
 	[Key.copyDate]: "日期",
 	[Key.copyLicense]: "许可",
 	[Key.copied]: "已复制",
-	[Key.follow]: "Follow",
 	[Key.poweredBy]: "Powered by",
 	[Key.subscribe]: "订阅",
 	[Key.seriesLabel]: "专题收录",

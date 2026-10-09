@@ -32,7 +32,6 @@ enum I18nKey {
 	copyDate = "copyDate",
 	copyLicense = "copyLicense",
 	copied = "copied",
-	follow = "follow",
 	poweredBy = "poweredBy",
 	subscribe = "subscribe",
 	seriesLabel = "seriesLabel",

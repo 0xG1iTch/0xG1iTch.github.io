@@ -156,12 +156,6 @@ export default function SubscribePage() {
 				</div>
 			</div>
 
-			<div className="mt-4 md:mt-5 text-[9px] md:text-[10px] font-mono text-lt-ghost leading-relaxed tracking-wide px-1">
-				<p>
-					Copy the URL into your RSS reader. Supports Follow, Feedly, Inoreader, and more.
-				</p>
-			</div>
-
 			<style>{`
 				.xml-tag { color: #D4621A; }
 				.xml-attr { color: #4B8D9E; }
