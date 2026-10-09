@@ -15,9 +15,9 @@ profile:
   bio: " "
   links:
     - name: "GitHub"
-      url: "https://github.com/ChongxiSama/0xg1itch"
+      url: "https://github.com/0xg1itch"
     - name: "Docs"
-      url: "https://github.com/ChongxiSama/0xg1itch#readme"
+      url: "https://github.com/0xg1itch#readme"
     - name: "主题目录"
       url: "https://astro.build/themes/"
 
