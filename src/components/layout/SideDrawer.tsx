@@ -13,6 +13,7 @@ interface NavItem {
 const hrefLabelMap: Record<string, I18nKey> = {
 	"/": I18nKey.home,
 	"/archive/": I18nKey.archive,
+	"/categories/": I18nKey.categories,
 	"/seri/": I18nKey.series,
 	"/links/": I18nKey.links,
 	"/about/": I18nKey.about,

@@ -1,0 +1,97 @@
+---
+import ArchiveHeader from "@components/pages/ArchiveHeader.astro";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
+import { siteConfig } from "../../config";
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/cepato.css";
+import { RpStamp } from "@components/ui/RpStamp";
+import { StripeFooter } from "@components/ui/StripeFooter";
+import { getCategoryList, getSortedPostsList } from "@utils/content-utils";
+
+const categories = await getCategoryList();
+const posts = await getSortedPostsList();
+const uncategorized = i18n(I18nKey.uncategorized);
+
+// Count posts per category ourselves so we don't depend on the helper's return shape
+const counts = new Map<string, number>();
+for (const post of posts) {
+	const key = post.data.category || uncategorized;
+	counts.set(key, (counts.get(key) ?? 0) + 1);
+}
+
+const items = categories
+	.map((c) => ({ name: c.name, count: counts.get(c.name) ?? 0 }))
+	.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+
+const categoriesLabel = i18n(I18nKey.categories);
+const pageTitle = `${categoriesLabel} - ${siteConfig.title}`;
+const metaDescription = `${siteConfig.title} categories`;
+---
+
+<Layout title={pageTitle} description={metaDescription}>
+	<div class="py-12 md:py-16 flex flex-col items-center gap-0 overflow-x-hidden pt-14">
+
+		<ArchiveHeader
+			title={categoriesLabel}
+			count={items.length}
+			variant="dark"
+		/>
+
+		<div class="relative w-full max-w-[840px] bg-lt-bg paper-texture shadow-2xl px-6 md:px-16 py-12 overflow-hidden flex flex-col gap-12 transition-all duration-500 min-h-[400px]">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+				{items.map((cat) => (
+					<a
+						href={`/categories/${encodeURIComponent(cat.name)}/`}
+						class="group relative p-6 border border-lt-border/40 hover:bg-lt-surface transition-all duration-300 flex flex-col gap-4 overflow-hidden"
+					>
+						<div class="flex justify-between items-start">
+							<div class="space-y-1">
+								<span class="font-mono text-[10px] text-lt-ghost uppercase tracking-widest block">
+									CATEGORY
+								</span>
+								<h3 class="font-cn text-xl font-bold text-lt-ink group-hover:text-lt-accent transition-colors">
+									{cat.name}
+								</h3>
+							</div>
+							<span class="text-lt-ghost group-hover:text-lt-ink transition-colors font-display text-2xl">→</span>
+						</div>
+						<div class="pt-4 mt-auto flex items-center justify-between border-t border-lt-border/20">
+							<span class="font-mono text-[10px] text-lt-ghost">
+								{cat.count} {cat.count === 1 ? i18n(I18nKey.postCount) : i18n(I18nKey.postsCount)}
+							</span>
+						</div>
+
+						<div class="absolute -bottom-4 -right-4 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
+							<span class="font-display text-6xl uppercase italic select-none pointer-events-none">
+								{cat.name}
+							</span>
+						</div>
+					</a>
+				))}
+			</div>
+
+			{items.length === 0 && (
+				<div class="py-20 text-center relative z-10">
+					<p class="font-mono text-[11px] text-lt-ghost italic">
+						No categories yet. Add a category to a post's front matter and it will show up here.
+					</p>
+				</div>
+			)}
+
+			<div class="relative z-10 mt-12 pt-8 border-t border-lt-ink flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
+				<div class="flex items-center gap-4">
+					<div class="scale-90 origin-left">
+						<RpStamp />
+					</div>
+					<div class="text-[10px] font-mono text-lt-ghost leading-none uppercase tracking-tighter text-center md:text-left">
+						{siteConfig.title}
+						<br />
+						Categories // {new Date().getFullYear()}
+					</div>
+				</div>
+			</div>
+			<StripeFooter />
+		</div>
+	</div>
+</Layout>
