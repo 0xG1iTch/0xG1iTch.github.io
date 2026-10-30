@@ -12,17 +12,17 @@ const fullTitle = title ? `${title} — ${profile.name}` : `${profile.name} — 
 const canonical = new URL(Astro.url.pathname, Astro.site || Astro.url.origin);
 ---
 <!doctype html>
-<html lang="en" id="top" data-theme="dark">
+<html lang="en" id="top" data-theme="light">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#141819"/>
+    <meta name="theme-color" content="#F1F0EA"/>
     <script is:inline>
       let saved;
       try { saved = localStorage.getItem('fieldnotes-theme-v1'); } catch {}
       const theme = saved === 'light' || saved === 'dark'
         ? saved
-        : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        : 'light';
       document.documentElement.dataset.theme = theme;
       document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#141819' : '#F1F0EA');
     </script>
