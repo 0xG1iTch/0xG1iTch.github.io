@@ -1,3 +1,0 @@
-Contact: mailto:your@email.com
-Preferred-Languages: en
-Canonical: https://your-site.com/.well-known/security.txt
