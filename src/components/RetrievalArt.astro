@@ -1,0 +1,21 @@
+---
+const points = Array.from({length: 360}, (_, i) => {
+  const col = i % 24, row = Math.floor(i / 24);
+  const x = 45 + col * 19.5, y = 43 + row * 17;
+  const selected = Math.pow((col-15)/6.4, 2) + Math.pow((row-7)/5.2, 2) < 1;
+  return {x, y, selected, r: selected ? 2.9 + ((i*7)%4)*0.28 : 1.8};
+});
+---
+<div class="retrieval-art" aria-hidden="true">
+  <svg viewBox="0 0 540 354" fill="none">
+    <path class="art-rule" d="M25 22h490M25 317h490M25 22v295M515 22v295"/>
+    {points.map(p => <circle cx={p.x} cy={p.y} r={p.r} class={p.selected ? 'retrieved-point' : 'document-point'}/>)}
+    <circle cx="337.5" cy="162" r="101" class="retrieval-radius"/>
+    <path d="M337.5 151v22m-11-11h22" class="query-cross"/>
+    <path class="art-annotation" d="M350 153 427 72h53M239 265l-35 31H64"/>
+    <text x="480" y="62" text-anchor="end" class="art-text">QUERY VECTOR</text>
+    <text x="64" y="288" class="art-text">SEMANTIC NEIGHBORHOOD</text>
+    <text x="25" y="342" class="art-text">FIG. 01 — FINDING SIGNAL IN THE NOISE</text>
+    <text x="515" y="342" text-anchor="end" class="art-text">RAG / RETRIEVAL</text>
+  </svg>
+</div>

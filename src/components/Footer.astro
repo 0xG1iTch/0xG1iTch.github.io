@@ -1,0 +1,17 @@
+---
+import { profile } from '../config';
+import { withBase } from '../lib/content';
+import Arrow from './Arrow.astro';
+---
+<footer class="site-footer">
+  <div class="footer-top flex justify-between items-center gap-8">
+    <a class="text-link" href={withBase('writing/')}>Browse all writing <Arrow size={16}/></a>
+    <div class="footer-links flex gap-6">
+      {profile.email && <a href={`mailto:${profile.email}`}>Email <Arrow diagonal size={13}/></a>}
+      {profile.github && <a href={profile.github}>GitHub <Arrow diagonal size={13}/></a>}
+      {profile.linkedin && <a href={profile.linkedin}>LinkedIn <Arrow diagonal size={13}/></a>}
+      <a href={withBase('feed.xml')}>RSS <Arrow diagonal size={13}/></a>
+    </div>
+  </div>
+  <div class="footer-bottom flex justify-between gap-5"><span>© {new Date().getFullYear()} {profile.name}</span><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
+</footer>

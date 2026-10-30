@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile } from '../config';
+import { withBase } from '../lib/content';
+import Arrow from '../components/Arrow.astro';
+import { Image } from 'astro:assets';
+import portrait from '../../pfp/pfp.jpeg';
+---
+<BaseLayout title="About" description="The thinking behind this open notebook on AI engineering." active="About">
+  <section class="page-intro"><h1>A little context<span class="accent">.</span></h1><div class="page-intro-bottom"><p>The person behind the notebook.</p><span class="section-aside">Build. Understand. Share. Repeat.</span></div></section>
+  <div class="about-layout"><aside class="about-aside"><Image src={portrait} alt={`Portrait of ${profile.name}`} width={240} height={240} class="about-portrait" format="webp" loading="eager"/><strong>{profile.name}</strong><span>{profile.role}</span></aside>
+    <div class="about-copy"><h2>Making AI useful.<br/>Making the process visible.</h2><p>I’m Mohamed. This is my open notebook on AI engineering: a place for building, experimenting, and working through ideas in public.</p><p>This is a space for the questions that come up when language models meet real systems: what to retrieve, how to evaluate, where to draw a boundary, and when a simpler approach is enough.</p><p>The work lives alongside the writing. A project becomes a case study; an experiment becomes a note. The interesting part is often the decision in between.</p><h2>What you’ll find here</h2><p>Technical articles with enough detail to reproduce an idea. Engineering stories that explain tradeoffs. Smaller observations that don’t need to become a manifesto.</p><a class="text-link" href={withBase('writing/')}>Explore the notebook <Arrow size={19}/></a>
+      {(profile.github || profile.linkedin || profile.email) && <div class="about-contact">{profile.email && <a href={`mailto:${profile.email}`}>{profile.email}</a>}{profile.github && <a href={profile.github}>GitHub <Arrow diagonal size={15}/></a>}{profile.linkedin && <a href={profile.linkedin}>LinkedIn <Arrow diagonal size={15}/></a>}</div>}
+    </div>
+  </div>
+</BaseLayout>

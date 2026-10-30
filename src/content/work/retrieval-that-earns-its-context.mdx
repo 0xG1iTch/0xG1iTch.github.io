@@ -1,0 +1,109 @@
+---
+title: "Building a RAG system that earns its context"
+description: "From a folder of documents to grounded answers. A practical look at retrieval, reranking, and knowing when to say “I don’t know.”"
+date: 2026-10-22
+type: Project
+topics: [RAG, LLMs, Systems]
+featured: true
+sample: true
+---
+
+An answer can sound right and still be wrong. In a retrieval-augmented generation system, that gap often starts before the language model sees a single token: the evidence it needed never made it into the context window.
+
+This sample case study walks through a small document assistant for a fictional engineering team. The goal is deliberately narrow: answer questions about internal runbooks, with citations that a reader can actually check. The architecture is a reproducible starting point, not a report of production results.
+
+## Start with the question
+
+Imagine a folder of deployment guides, incident reviews, and API documentation. A teammate asks: “What should I check before rolling back the payment service?”
+
+A useful answer needs the current rollback procedure, the payment service’s dependencies, and the distinction between a routine rollback and a database migration. Finding a document containing the word “rollback” is only a beginning.
+
+I would define success before choosing the vector store:
+
+- The response identifies the relevant procedure and its version.
+- Each operational claim points to an exact source passage.
+- Conflicting or missing instructions are surfaced explicitly.
+- The system declines to invent a step when the documents do not support it.
+
+These requirements make retrieval quality a product concern. A fluent answer with the wrong runbook is a failed answer.
+
+## Give chunks a job
+
+Fixed-size splitting is a useful baseline. It is also easy to lose the heading that explains a paragraph, or separate a warning from the command it qualifies.
+
+For this assistant, chunk along document sections first. Preserve the title, heading path, source URL, revision, and access scope as metadata. If a section exceeds the budget, split it into smaller passages with modest overlap and retain the same heading path.
+
+```python
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Passage:
+    text: str
+    source: str
+    heading: str
+    revision: str
+
+def embedding_text(passage: Passage) -> str:
+    return f"{passage.heading}\n\n{passage.text}"
+```
+
+Keep the original passage text alongside the text used for embedding. A citation should reproduce the source, not an enriched string the retrieval pipeline assembled.
+
+There is no universal ideal chunk size. Start with a section-aware baseline, inspect the missed questions, and change the split only when you can explain the failure it addresses.
+
+## Retrieve, then choose
+
+Semantic search is good at matching related ideas. Lexical search is useful for exact identifiers, error codes, and service names. A small hybrid pipeline can use both without asking either one to solve every question.
+
+<figure>
+  <img src={`${import.meta.env.BASE_URL}images/rag-pipeline.svg`} alt="A retrieval pipeline: question enters lexical and vector search, candidates merge, a reranker selects evidence, and the model produces a cited answer." width="900" height="250" loading="lazy" />
+  <figcaption>Search broadly, choose evidence carefully, and keep source identifiers through every stage.</figcaption>
+</figure>
+
+Retrieve a candidate set from each search method, combine their rankings, then rerank the merged passages against the original question. Reciprocal rank fusion provides a reasonable baseline when the search scores have different scales.
+
+```python
+def reciprocal_rank_fusion(rankings, k=60):
+    scores = {}
+    for ranking in rankings:
+        for rank, passage_id in enumerate(ranking, start=1):
+            scores[passage_id] = (
+                scores.get(passage_id, 0.0) + 1.0 / (k + rank)
+            )
+    return sorted(scores, key=scores.get, reverse=True)
+```
+
+The reranker’s job is selection, not answer generation. Give it a bounded candidate set. Remove duplicate passages and respect the final context budget. Keep enough neighboring text to make an instruction intelligible.
+
+| Stage | What it contributes | What to inspect |
+| --- | --- | --- |
+| Lexical search | Exact names and identifiers | Missed aliases and abbreviations |
+| Vector search | Conceptual similarity | Relevant-looking but wrong procedures |
+| Rank fusion | A combined candidate pool | Duplicate or stale passages |
+| Reranking | Question-specific ordering | Correct evidence pushed below the cutoff |
+
+## Make uncertainty visible
+
+The prompt should establish that retrieved documents are evidence, not instructions to the assistant. A runbook can contain arbitrary text, including copied prompts or commands. Treating every retrieved sentence as trusted control text creates a different failure mode from ordinary hallucination.
+
+Label passages with stable identifiers and require claim-level citations. If the source does not cover a requested step, the answer should name that gap and point to the closest relevant material.
+
+> “I found the rollback checklist, but it does not describe how to reverse this database migration” is useful information.
+
+An abstention policy cannot rest on a single similarity threshold. Scores vary across queries and retrieval methods. Evaluate the complete answerability decision on representative questions, including cases where the right document is absent.
+
+In a real internal deployment, enforce document access before retrieving or returning passages. A correct answer from a document the reader cannot access is still a system failure.
+
+## Close the evaluation loop
+
+Build a small, versioned set of questions from the intended workflow. Include exact identifiers, ambiguous phrasing, conflicting revisions, and questions the corpus cannot answer. Attach the supporting passages and a short explanation of the expected behavior.
+
+Measure retrieval and answer generation separately. First ask whether the necessary evidence appears in the candidate pool. Then ask whether selection preserves it. Only then inspect whether the final answer is supported and properly cited.
+
+Record latency and cost alongside quality. A more expensive reranker is only useful if it improves a failure mode that matters to the reader. Keep the simple baseline so every added component has something to beat.
+
+The lasting lesson is less about a particular framework than about boundaries. Retrieval finds possibilities. Selection assembles evidence. Generation explains what that evidence supports. When each stage has a clear job, the system becomes easier to test—and easier to trust.
+
+## Further reading
+
+The [original RAG paper](https://arxiv.org/abs/2005.11401) describes retrieval-augmented generation. For the ranking baseline, see the [reciprocal rank fusion paper](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf). Treat implementation choices here as a sample design to validate against your own corpus.

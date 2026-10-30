@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentFeed from '../components/ContentFeed';
+import RetrievalArt from '../components/RetrievalArt.astro';
+import Arrow from '../components/Arrow.astro';
+import { getFeed, getWork, withBase, readingTime } from '../lib/content';
+import { primaryTopics } from '../lib/topics';
+const [entries, work] = await Promise.all([getFeed(), getWork()]);
+const featured = work.find(entry => entry.data.featured) || work[0];
+const latestEntries = entries.slice(0, 4);
+const topics = [...new Set([...primaryTopics, ...entries.flatMap(entry => entry.topics)])];
+---
+<BaseLayout>
+  <section class="home-intro" aria-labelledby="intro-title">
+    <h1 id="intro-title">I build and write about production AI systems.</h1>
+    <a class="primary-link" href={withBase('writing/')}>Read my writing <Arrow size={18}/></a>
+  </section>
+  {featured && <section class="featured-section" aria-labelledby="featured-title">
+    <div class="section-heading flex justify-between items-center"><h2>In focus</h2><span class="section-aside">A closer look at the work</span></div>
+    <a class="featured-story" href={withBase(`writing/${featured.id}/`)}>
+      <div class="featured-copy"><div class="featured-meta"><span class="content-type type-project"><span aria-hidden="true"/>{featured.data.type}</span><span>LLMs & retrieval</span></div><h3 id="featured-title">{featured.data.title}</h3><p>{featured.data.description}</p><span class="feature-cta">Read the case study <Arrow size={20}/><span class="feature-time">{readingTime(featured.body)} min read</span></span></div>
+      <RetrievalArt/>
+    </a>
+  </section>}
+  <section class="journal-section" aria-labelledby="journal-title">
+    <div class="section-heading flex justify-between items-center"><div class="section-heading-group flex items-baseline gap-5"><h2 id="journal-title">Latest posts</h2><span class="section-aside">Recent articles, projects, and experiments.</span></div><a class="archive-link" href={withBase('writing/')}>View all posts <Arrow size={17}/></a></div>
+    <ContentFeed entries={latestEntries} client:load/>
+  </section>
+  <section class="topics-section" aria-labelledby="topics-title">
+    <div class="section-heading"><h2 id="topics-title">Explore by topic</h2></div>
+    <nav class="topic-links" aria-label="Explore writing by topic">
+      {topics.map(topic => <a href={`${withBase('writing/')}?topic=${encodeURIComponent(topic)}`}>{topic}<Arrow diagonal size={15}/></a>)}
+    </nav>
+  </section>
+</BaseLayout>

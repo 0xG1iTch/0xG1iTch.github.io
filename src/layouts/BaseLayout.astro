@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/public-sans';
+import publicSansFont from '@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2?url';
+import { profile } from '../config';
+import { withBase } from '../lib/content';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+interface Props { title?: string; description?: string; active?: string; article?: boolean; }
+const { title, description = profile.description, active = 'Home', article = false } = Astro.props;
+const fullTitle = title ? `${title} — ${profile.name}` : `${profile.name} — AI Engineering & Fieldnotes`;
+const canonical = new URL(Astro.url.pathname, Astro.site || Astro.url.origin);
+---
+<!doctype html>
+<html lang="en" id="top" data-theme="dark">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#141819"/>
+    <script is:inline>
+      let saved;
+      try { saved = localStorage.getItem('fieldnotes-theme-v1'); } catch {}
+      const theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#141819' : '#F1F0EA');
+    </script>
+    <meta name="description" content={description}/>
+    <link rel="preload" href={publicSansFont} as="font" type="font/woff2" crossorigin/>
+    <link rel="canonical" href={canonical}/>
+    <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml"/>
+    <link rel="alternate" type="application/rss+xml" title={`${profile.name} — Fieldnotes`} href={withBase('feed.xml')}/>
+    <meta property="og:title" content={fullTitle}/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:type" content={article ? 'article' : 'website'}/>
+    <meta property="og:url" content={canonical}/>
+    <meta property="og:image" content={new URL(withBase('social.svg'), Astro.site || Astro.url.origin)}/>
+    <meta name="twitter:card" content="summary"/>
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell"><Header active={active}/><main id="main"><slot/></main><Footer/></div>
+  </body>
+</html>

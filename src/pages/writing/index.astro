@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentFeed from '../../components/ContentFeed';
+import { getFeed } from '../../lib/content';
+const entries = await getFeed();
+---
+<BaseLayout title="Writing" description="Articles, engineering case studies, experiments, and fieldnotes on language models and retrieval." active="Writing">
+  <section class="page-intro"><h1>All posts<span class="accent">.</span></h1><div class="page-intro-bottom"><p>Articles, projects, experiments, and notes.<br/>The complete archive, newest first.</p><span class="section-aside">Filter by topic or content type.</span></div></section>
+  <section aria-labelledby="published-work"><h2 id="published-work" class="sr-only">Published work</h2><ContentFeed entries={entries} client:load/></section>
+</BaseLayout>
